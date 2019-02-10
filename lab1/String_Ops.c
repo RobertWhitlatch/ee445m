@@ -8,9 +8,10 @@
 int getString(char* buff, int buff_length){
     static int index = 0;
     char ch = fgetc(uart_cmd);
+    fputc(ch, uart_cmd);
     if(ch > -1){
         if(ch == '\n' || ch == '\r' || index == buff_length){
-            buff[index-1] = 0;
+            buff[index] = 0;
             int result = index;
             index = 0;
             return (result);
@@ -19,5 +20,5 @@ int getString(char* buff, int buff_length){
             index++;
         }
     }
-    return(0);
+    return(-1);
 }

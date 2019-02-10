@@ -3,10 +3,56 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Users\sword\Desktop\ee445m\lab1\lab1.uvproj
-Project File Date:  02/07/2019
+C:\Users\Mitchell\Desktop\ee445m\lab1\lab1.uvproj
+Project File Date:  02/10/2019
 
 <h2>Output:</h2>
-</pre>
-</body>
-</html>
+Rebuild target 'lab1'
+assembling startup.s...
+compiling PLL.c...
+compiling ST7735.c...
+compiling main.c...
+compiling UART.c...
+compiling Output.c...
+compiling ADC0.c...
+compiling OS.c...
+compiling String_Ops.c...
+compiling Commands.c...
+linking...
+Program Size: Code=6892 RO-data=2192 RW-data=224 ZI-data=1112  
+".\lab1.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\Users\\Mitchell\\Desktop\\ee445m\\lab1\\lab1.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+0,0,0,0,0,0};
+Commands.c(11): warning:  #174-D: expression has no effect
+  char* argv[8] = {0,0,0,0,0,0,0,0};
+Commands.c(11): warning:  #174-D: expression has no effect
+  char* argv[8] = {0,0,0,0,0,0,0,0};
+Commands.c(11): warning:  #174-D: expression has no effect
+  char* argv[8] = {0,0,0,0,0,0,0,0};
+Commands.c(11): warning:  #174-D: expression has no effect
+  char* argv[8] = {0,0,0,0,0,0,0,0};
+Commands.c(11): warning:  #174-D: expression has no effect
+  char* argv[8] = {0,0,0,0,0,0,0,0};
+Commands.c(11): warning:  #174-D: expression has no effect
+  char* argv[8] = {0,0,0,0,0,0,0,0};
+Commands.c(11): error:  #65: expected a ";"
+  char* argv[8] = {0,0,0,0,0,0,0,0};
+Commands.c(24): error:  #20: identifier "argv" is undefined
+      argv[0] = cmd;
+Commands.c(54): error:  #20: identifier "argv" is undefined
+                  argv[i] = 0;
+Commands.c(61): error:  #20: identifier "argv" is undefined
+          argv[i] = 0;
+Commands.c(72): error:  #247: function "msg_interface" has already been defined
+  void msg_interface(void){
+Commands.c(73): error:  #20: identifier "argv" is undefined
+      int device = atoi(argv[1]);
+Commands.c(87): error:  #20: identifier "argv" is undefined
+      int channel = atoi(argv[1]);
+Commands.c: 8 warnings, 8 errors
+".\lab1.axf" - 8 Error(s), 8 Warning(s).
+Target not created

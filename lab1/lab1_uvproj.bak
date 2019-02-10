@@ -446,19 +446,14 @@
               <FilePath>.\OS.c</FilePath>
             </File>
             <File>
-              <FileName>cmd_interface.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\cmd_interface.c</FilePath>
-            </File>
-            <File>
-              <FileName>cmdline.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\cmdline.c</FilePath>
-            </File>
-            <File>
               <FileName>String_Ops.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\String_Ops.c</FilePath>
+            </File>
+            <File>
+              <FileName>Commands.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Commands.c</FilePath>
             </File>
           </Files>
         </Group>

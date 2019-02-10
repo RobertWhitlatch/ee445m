@@ -10,14 +10,19 @@
 #include "Commands.h"
 
 #define BUFF_LENGTH 50
+char msg_test[BUFF_LENGTH] = "msg 0 0 \"Hello, World!\" 789 1";
+char adc_test[BUFF_LENGTH] = "adc 0";
 char input_buff[BUFF_LENGTH];
+int msg_strlength = 29;
+int adc_strlength = 29;
+int strlength;
 char in_char;
-int strlength = 0;
+
 
 void dummy(){
     // 59 cycle or 737.5 nanosecs to execute empty ISR
-    static int count = 0;
-    fprintf(lcd,"%d\n",count++);
+    //static int count = 0;
+    //fprintf(lcd,"%d\n",count++);
 }
 
 int main(void){
@@ -25,17 +30,18 @@ int main(void){
     DisableInterrupts();
     PLL_Init(Bus80MHz);
     Output_Init();
-    //OS_AddPeriodicThread(&dummy,1000000, 4);
-    
+    OS_AddPeriodicThread(&dummy, 1000000, 4);
     EnableInterrupts();
-    fprintf(lcd,"Hello, World!");
-    fprintf(uart_cmd,"Hello, World!\n>");
+    fprintf(uart_cmd, ">");
 
     while(1){
-
         if((in_char = fgetc(uart_cmd)) > -1){
             fprintf(uart_cmd, "%c\n", in_char);
             switch(in_char){
+                case 'a':
+                    fprintf(uart_cmd, "Executing ADC test command\n");
+                    processCommand(adc_test, adc_strlength);
+                    break;
                 case 'c':
                 case 'C':
                     fprintf(uart_cmd, "Enter Command\n");
@@ -44,11 +50,12 @@ int main(void){
                     break;
                 case 'h':
                 case 'H':
+                    fprintf(uart_cmd, "a - adc Test\n");
                     fprintf(uart_cmd, "c - Enter Command\n");
                     fprintf(uart_cmd, "h - Help Menu\n");
                     fprintf(uart_cmd, "i - Information Page\n");
                     fprintf(uart_cmd, "I - Toggle Interrupts\n");
-                    
+                    fprintf(uart_cmd, "m - msg Test\n");
                     break;
                 case 'i':
                     fprintf(uart_cmd, "Core Freqency - 80MHz\n");
@@ -66,6 +73,10 @@ int main(void){
                         DisableInterrupts();
                         fprintf(uart_cmd, "Interrupts - Disabled\n");
                     }
+                    break;
+                case 'm':
+                    fprintf(uart_cmd, "Executing msg test command\n");
+                    processCommand(msg_test, msg_strlength);
                     break;
                 default:
                     break;

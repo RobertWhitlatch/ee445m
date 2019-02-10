@@ -3,17 +3,10 @@
 #ifndef __ADC0_H__
 #define __ADC0_H__
 
-// This initialization function sets up the ADC according to the
-// following parameters.  Any parameters not explicitly listed
-// below are not modified:
-// Max sample rate: <=125,000 samples/second
-// Sequencer 0 priority: 1st (highest)
-// Sequencer 1 priority: 2nd
-// Sequencer 2 priority: 3rd
-// Sequencer 3 priority: 4th (lowest)
-// SS3 triggering event: software trigger
-// SS3 1st sample source: programmable using variable 'channelNum' [0:11]
-// SS3 interrupts: enabled but not promoted to controller
+// -----------ADC0_Open-----------
+// Prepares an ADC0 channel to execute conversions, in a busy-wait fashion
+// Input: Channel to be opened
+// Output: None
 void ADC0_Open(int channelNum);
 
 //------------ADC0_In------------

@@ -160,7 +160,7 @@ void ADC0_Open(int channelNum){
 
 }
 
-//------------ADC0_InSeq3------------
+//------------ADC0_In------------
 // Busy-wait Analog to digital conversion
 // Input: none
 // Output: 12-bit result of ADC conversion
@@ -319,6 +319,11 @@ uint16_t* ADC0_buffer;
 uint32_t ADC0_buffer_index;
 uint32_t ADC0_numSamples;
 
+//------------ADC0_Collect--------
+// Collect a specificed amount of ADC data
+// Input: Channel to be collected from, frequency to collect at,
+//        Buffer to store data in, and number of samples to take
+// Output: None
 void ADC0_Collect(uint32_t channelNum, uint32_t freq, uint16_t* buffer, uint32_t numberOfSamples){
 
     ADC0_Seq3_Timer2A_Init(channelNum,80000000/freq);
@@ -329,6 +334,10 @@ void ADC0_Collect(uint32_t channelNum, uint32_t freq, uint16_t* buffer, uint32_t
 
 }
 
+//-----------ADC0_Status-----------
+// Return status of the previous ADC0_Collect task.
+// Input: None
+// Output: Number of samples remaining, 0 indicates completion
 int ADC0_Status(void){
 
     return(ADC0_numSamples-ADC0_buffer_index);

@@ -1657,9 +1657,11 @@ void ST7735_Message(int device, int line, char* string, int32_t value, int value
     device %= 4;
     line %= 4;
     ST7735_SetCursor(0, (device*4+line));
-    fprintf(lcd_os,"%s",string);
     if(value_used){
+        fprintf(lcd_os,"%s ",string);
         fprintf(lcd_os,"%d",value);
+    }else{
+        fprintf(lcd_os,"%s",string);
     }
 
 }

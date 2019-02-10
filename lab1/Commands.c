@@ -5,22 +5,46 @@
 #include "ST7735.h"
 #include "ADC0.h"
 
+void adc_interface(void);
+void msg_interface(void);
+
 char* argv[8] = {0,0,0,0,0,0,0,0};
 int argc = 1;
 #define NUM_CMDS 2
 const char* commands[NUM_CMDS] = {"msg", "adc"};
 void (*cmd_ptr[NUM_CMDS])(void) = {msg_interface,adc_interface};
 
+
+// -------------prepareCommand -----------------
+// Prepares command string to be processes
+// Input: Command string, and its length
+// Output: None
 void prepareCommand(char* cmd, int strlength){
+    int flag = 0;
+    argv[0] = cmd;
     for(int i = 0; i < strlength; i++){
+        if(flag){
+            flag = 0;
+            while(cmd[i] != '"' && i < strlength){
+                i++;
+            }
+            cmd[i++] = 0;
+        }
         if(cmd[i] == ' '){
             cmd[i] = 0;
+            if(cmd[i+1] == '"'){
+                cmd[++i] = 0;
+                flag = 1;
+            }
             argv[argc++] = (cmd+i+1);
         }
     }
 }
 
-
+// -------------processCommand------------------
+// Processes and executes entered command
+// Input: Command string, and its length
+// Output: None
 void processCommand(char* cmd, int strlength){
     prepareCommand(cmd, strlength);
     for(int i = 0; i < NUM_CMDS; i++){
@@ -41,19 +65,29 @@ void processCommand(char* cmd, int strlength){
     return;
 }
 
+//---------msg_interface---------
+// Translate cmd string in the appropriate arguments to ST7735_message
+// Inputs: argc, *argc[]
+// Output: None
 void msg_interface(void){
     int device = atoi(argv[1]);
     int line = atoi(argv[2]);
     int value = atoi(argv[4]);
     int value_used = atoi(argv[5]);
-    ST7735_Message(device,line,argv[2],value,value_used);
+    ST7735_Message(device,line,argv[3],value,value_used);
     fprintf(uart,"Message printed to ST7735\n");
 }
 
+
+//---------adc_interface---------
+// Translate cmd string in the appropriate arguments to execture adv conversion
+// Inputs: argc, *argc[]
+// Output: None
 void adc_interface(void){
     int channel = atoi(argv[1]);
     ADC0_Open(channel);
     int value = ADC0_In();
-    fprintf(uart,"Value obtained from Channel %d is %d",channel, value);
-
+    ST7735_Message(1, 0, "ADC_Channel", channel, 1);
+    fprintf(lcd_os, " = %d", value);
+    fprintf(uart,"ADC Value printed to ST7735\n");
 }
