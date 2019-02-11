@@ -1,92 +1,0 @@
-Dependencies for Project 'lab1', Target 'lab1': (DO NOT MODIFY !)
-F (.\startup.s)(0x5C588295)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
-F (.\PLL.c)(0x5C5730ED)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\pll.o --omf_browse .\pll.crf --depend .\pll.d)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (.\inc\PLL.h)(0x5C574B45)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-F (.\ST7735.c)(0x5C61AC1B)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\st7735.o --omf_browse .\st7735.crf --depend .\st7735.d)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (.\inc\ST7735.h)(0x5C5757C9)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-F (.\main.c)(0x5C61B29D)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\main.o --omf_browse .\main.crf --depend .\main.d)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-I (.\inc\ST7735.h)(0x5C5757C9)
-I (.\inc\PLL.h)(0x5C574B45)
-I (.\inc\UART.h)(0x5C574B45)
-I (.\inc\ADC0.h)(0x5C61A3A8)
-I (.\inc\OS.h)(0x5C5784F8)
-I (.\inc\String_Ops.h)(0x5C587EEA)
-I (.\inc\Commands.h)(0x5C61A3A8)
-F (.\UART.c)(0x5C61A7FB)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\uart.o --omf_browse .\uart.crf --depend .\uart.d)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (.\inc\UART.h)(0x5C574B45)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-F (.\Output.c)(0x5C61AA9D)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\output.o --omf_browse .\output.crf --depend .\output.d)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-I (.\inc\UART.h)(0x5C574B45)
-I (.\inc\ST7735.h)(0x5C5757C9)
-F (.\ADC0.c)(0x5C61A3A8)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\adc0.o --omf_browse .\adc0.crf --depend .\adc0.d)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-F (.\OS.c)(0x5C5785C0)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\os.o --omf_browse .\os.crf --depend .\os.d)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-F (.\String_Ops.c)(0x5C61B261)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\string_ops.o --omf_browse .\string_ops.crf --depend .\string_ops.d)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-F (.\Commands.c)(0x5C61B9EE)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\commands.o --omf_browse .\commands.crf --depend .\commands.d)
-I (.\inc\CustomDefinitions.h)(0x5C588295)
-I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)
-I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
-I (.\inc\FiFo.h)(0x5C61A5B4)
-I (.\inc\Stack.h)(0x5C574B45)
-I (.\inc\Output.h)(0x5C574A16)
-I (C:\Keil\ARM\ARMCC\include\stdlib.h)(0x51C87C24)
-I (C:\Keil\ARM\ARMCC\include\string.h)(0x51C87C24)
-I (.\inc\Commands.h)(0x5C61A3A8)
-I (.\inc\ST7735.h)(0x5C5757C9)
-I (.\inc\ADC0.h)(0x5C61A3A8)
-I (.\inc\OS.h)(0x5C5784F8)
