@@ -76,7 +76,7 @@ I (.\inc\tm4c123gh6pm.h)(0x5C572C49)
 I (.\inc\FiFo.h)(0x5C61A5B4)
 I (.\inc\Stack.h)(0x5C574B45)
 I (.\inc\Output.h)(0x5C574A16)
-F (.\Commands.c)(0x5C61B29D)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\commands.o --omf_browse .\commands.crf --depend .\commands.d)
+F (.\Commands.c)(0x5C61B9EE)(-c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\.. -I.\inc --C99-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\commands.o --omf_browse .\commands.crf --depend .\commands.d)
 I (.\inc\CustomDefinitions.h)(0x5C588295)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x51C87C24)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C87C24)

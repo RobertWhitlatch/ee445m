@@ -80,7 +80,6 @@ void msg_interface(void){
     fprintf(uart,"Message printed to ST7735.\n");
 }
 
-
 //---------adc_interface---------
 // Translate cmd string in the appropriate arguments to execute adc conversion
 // Inputs: argc, *argc[]
