@@ -15,7 +15,7 @@ int NAME ## Fifo_Put (TYPE data){                                               
         return(FAIL);                                                                                   \
     }                                                                                                   \
     NAME ## Fifo[ NAME ## PutI &(SIZE-1)] = data;                                                       \
-    NAME ## PutI ## ++;                                                                                 \
+    NAME ## PutI ++;                                                                                 \
     return(SUCCESS);                                                                                    \
 }                                                                                                       \
 int NAME ## Fifo_Get (TYPE *datapt){                                                                    \
@@ -23,7 +23,7 @@ int NAME ## Fifo_Get (TYPE *datapt){                                            
         return(FAIL);                                                                                   \
     }                                                                                                   \
     *datapt = NAME ## Fifo[ NAME ## GetI &(SIZE-1)];                                                    \
-    NAME ## GetI ## ++;                                                                                 \
+    NAME ## GetI ++;                                                                                 \
     return(SUCCESS);                                                                                    \
 }                                                                                                       \
 unsigned short NAME ## Fifo_Size (void){                                                                \

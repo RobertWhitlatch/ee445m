@@ -15,7 +15,9 @@ int getString(char* buff, int buff_length){
             int result = index;
             index = 0;
             return (result);
-        }else{
+        }else if(ch == 8){
+            index--;
+        } else {
             buff[index] = ch;
             index++;
         }

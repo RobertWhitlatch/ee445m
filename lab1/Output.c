@@ -37,10 +37,10 @@ int fputc(int ch, FILE *f){
         ST7735_OutChar(ch);
         return(1);
     }else if(f == uart_cmd){
+        UART_OutChar(ch);
         if(ch == 10){
             UART_OutChar(13);
         }
-        UART_OutChar(ch);
         return 1;
     }
     return(EOF);
