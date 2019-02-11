@@ -1,8 +1,17 @@
+# Keil
+*.crf
+*.bak
+*.htm
+*.axf
+*.dep
+*.lnp
+*.lst
+*.uvgui.*
+
 # Prerequisites
 *.d
 
 # Object files
-*.crf
 *.o
 *.ko
 *.obj
