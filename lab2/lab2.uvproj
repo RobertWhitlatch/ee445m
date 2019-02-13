@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>lab1</TargetName>
+      <TargetName>lab2</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -45,7 +45,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>lab1</OutputName>
+          <OutputName>lab2</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -141,7 +141,7 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>0</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
+            <UsePdscDebugDescription>0</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>3</TargetSelection>
@@ -416,44 +416,19 @@
               <FilePath>.\PLL.c</FilePath>
             </File>
             <File>
-              <FileName>ST7735.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ST7735.c</FilePath>
-            </File>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>UART.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\UART.c</FilePath>
-            </File>
-            <File>
-              <FileName>Output.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Output.c</FilePath>
-            </File>
-            <File>
-              <FileName>ADC0.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\ADC0.c</FilePath>
-            </File>
-            <File>
               <FileName>OS.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\OS.c</FilePath>
             </File>
             <File>
-              <FileName>String_Ops.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\String_Ops.c</FilePath>
+              <FileName>osasm.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\osasm.s</FilePath>
             </File>
             <File>
-              <FileName>Commands.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Commands.c</FilePath>
+              <FilePath>.\main.c</FilePath>
             </File>
           </Files>
         </Group>

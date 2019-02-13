@@ -2,10 +2,7 @@
 #define __CUSTOM_DEFINITIONS_H__
 
 #include <stdint.h>
-#include <stdio.h>
 #include "tm4c123gh6pm.h"
-#include "FiFo.h"
-#include "Stack.h"
 #include "Output.h"
 
 void DisableInterrupts(void); // Disable interrupts
@@ -14,16 +11,6 @@ long CheckInterrupts(void);   // Return status of I bit
 long StartCritical (void);    // previous I bit, disable interrupts
 void EndCritical(long sr);    // restore I bit to previous value
 void WaitForInterrupt(void);  // low power mode
-
-int TxFifo_Put(char data);
-int TxFifo_Get(char* datapt);
-int RxFifo_Put(char data);
-int RxFifo_Get(char* datapt);
-
-extern FILE* uart;
-extern FILE* uart_cmd;
-extern FILE* lcd;
-extern FILE* lcd_os;
 
 #define GPIO_LOCK_KEY   0x4C4F434B
 #define PA0             (*((volatile uint32_t *)0x40004004))
