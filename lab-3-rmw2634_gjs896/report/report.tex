@@ -1,0 +1,126 @@
+\documentclass{IEEEtran}
+\usepackage{enumerate,graphicx,listings,threeparttable}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  language={},
+  numbers=left,
+  numberstyle=\tiny,
+  firstnumber=5,
+  stepnumber=5,
+  frame=b,
+}
+
+\newcommand*{\gfxfigure}[2]{
+  \begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{#1}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+\begin{document}
+\title{Lab 2: RTOS Kernel}
+\author{Clara Schaertl Short (gjs896) and Mitchell Whitlatch (rmw2634)}
+\date{\today}
+\markboth{}{lab2\_rmw2634\_gjs896}
+\maketitle
+
+\section{Objectives}
+
+A basic RTOS kernel with spinlock semaphores, communication primitives, timer- and I/O-initiated background tasks, round-robin scheduling for foreground tasks, and low-overhead profiling and debugging features.
+
+\section{Measurement Data}
+
+\paragraph{Lab 2.1}Figure \ref{fig:test1-detail} is a logic analyzer trace of Testmain1, the cooperative multitasking system. Tasks switch at an interval of $1.225\mu$s = 98 bus cycles. Figures \ref{fig:test2-task-switch} and \ref{fig:test2-overview} are logic analyzer traces of Testmain2, the preemptive mutltiasking system. Each task toggles its output at an interval of 0.325$\mu$s = 26 bus cycles. Figure \ref{fig:test3-task-switch} is a logic analyzer trace of Testmain3, showing a thread-switching overhead of $1.300\mu$s = 104 bus cycles.
+
+\paragraph{Lab 2.2} Figures \ref{fig:main-adc}, \ref{fig:main-waiting}, and \ref{fig:main-display} are logic analyzer traces of the data-acquisition cycle at three different zoom levels; the observed events are summarized in Table \ref{tbl:profile-das}. Figure \ref{fig:main-button} is a logic analyzer trace of the response to pressing SW1; the observed events are summarized in Table \ref{tbl:profile-button}.
+
+Table \ref{tbl:perf-tuning} shows jitter, data loss, and PID work measurements for the five specified test runs, plus one run with instrumentation (jitter measurement and low-overhead profiling) disabled and one load-test run with maximum load on SW1 and the interpreter.
+
+Disabling instrumentation resulted in an $0.40\%$ gain in PID throughput ($11/2758$ iterations). Shortening the system time slice from 2ms to 1ms reduced PID throughput by  $0.25\%$ ($7/2758$ iterations), and lengthening the time slice to 10ms increased PID throughput by $0.22\%$ ($6/2758$ iterations).
+
+\begin{table}[b]
+  \centering
+  \renewcommand{\arraystretch}{1.1}
+  \caption{DAS Profile Data}
+  \label{tbl:profile-das}
+  \begin{tabular}{c|c}
+    Time ($\mu s$) & Description\\
+    \hline
+    0 &  Start DAS\\
+    8.8 & Finish ADC\_In\\
+    13.6 & Finish DAS\\
+    45.6 & Finish OS\_Fifo\_Get\\
+    97.2 & Start OS\_Fifo\_Get\\
+    6028 & Start ST7735\_Message\\
+    124700 & Finish ST7735\_Message
+  \end{tabular}
+\end{table}
+
+\begin{table}[b]
+  \centering
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Button Profile Data}
+  \label{tbl:profile-button}
+  \begin{tabular}{c|c}
+    Time (ms) & Description\\
+    \hline
+    0 & Release SW1\\
+    204 & Start ButtonWork\\
+    300 & Start OS\_Sleep\\
+    606 & Finish ButtonWork
+  \end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\renewcommand{\arraystretch}{1.1}
+\begin{threeparttable}
+  \caption{Performance Measurements}
+  \label{tbl:perf-tuning}
+  \begin{tabular}{cc|ccc}
+    FIFO & Tick & Data & Jitter & PID \\
+    Depth & (ms) & Lost & ($\mu$s) & Work \\
+    \hline
+    4 & 2 & 0 & 0 & 2758 \\
+    8 & 2 & 0 & 0 & 2758 \\
+    \hline
+    32 & 2 & 0 & 0 & 2758 \\
+    32 & 2 & 0 & ---\tnote{a} & 2769 \\
+    32 & 2 & 2526 & 7.1\tnote{b} & 1430 \\
+    \hline
+    32 & 1 & 0 & 0 & 2751 \\
+    32 & 10 & 0 & 0 & 2764 \\
+  \end{tabular}
+  \begin{tablenotes}
+  \item[a] No jitter measurement or profiling.
+  \item[b] Load test with SW1 and interpreter.
+  \end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+\section{Analysis and Discussion}
+
+\begin{enumerate}
+\item UART interrupts are competing with the periodic task interrupt.
+\item The ADC hardware is triggered directly by the timer; it generates an interrupt when the sample is ready.
+\item Our interrupt priorities in descending order are: UART, Timer (DAS), ADC, SW1 (Debounce), SW1, SysTick, PendSV. Fast I/O is given the highest priority, immediately followed by the periodic measurement task and the I/O device that it waits for. SysTick and PendSV are assigned the lowest priorities since they are only used for routine task switching.
+\item The \texttt{next} pointer in the current thread's TCB will be overwritten, causing the OS to access an invalid memory location during the next context switch. A stack overflow can be detected by adding a sentinel value (initialized by the OS) at the bottom of the allocated stack space, checking whether that value has been modified before context switching, and killing the affected task. The effects can be mitigated by placing user stack memory distant in RAM from kernel memory and/or using the MPU to keep user programs from overwriting kernel memory.
+\item Consumer and Display each call OS\_Kill exactly once, after the full run length has elapsed. The FIFO size requirement tells us that Consumer plus Display takes between 5 and 6 FS sample intervals (12.5--15 ms) to run.
+\item In this case, deterministic means that Consumer completes exactly one loop iteration for every 64 calls to Producer.  
+\item Unfortunately, we had already measured this---see Figure \ref{fig:main-adc}. Consumer spends almost all of its time waiting for Producer to place data into the FIFO, and within $52\mu s$ after collecting the 64th value, it goes back to waiting.
+\end{enumerate}
+
+\gfxfigure{test1-detail}{Logic analyzer trace for Testmain1 (cooperative).}
+\gfxfigure{test2-task-switch}{Logic analyzer trace for Testmain2 (preemptive), zoomed in.}
+\gfxfigure{test2-overview}{Logic analyzer trace for Testmain2 (preemptive), zoomed out.}
+\gfxfigure{test3-task-switch}{Logic analyzer trace for Testmain3 (task-switching overhead).}
+
+\gfxfigure{main-adc}{Logic analyzer trace for the DAS, zoomed in.}
+\gfxfigure{main-waiting}{Logic analyzer trace for the DAS.}
+\gfxfigure{main-display}{Logic analyzer trace for the DAS, zoomed out.}
+\gfxfigure{main-button}{Logic analyzer trace for ButtonWork.}
+
+\end{document}
